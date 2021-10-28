@@ -1,6 +1,7 @@
 package br.com.duelServer.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.duelServer.clients.IChampionFeign;
 import br.com.duelServer.dtos.CampeaoAPI;
 import br.com.duelServer.dtos.DuelDTO;
+import br.com.duelServer.exceptions.CampeaoException;
 import br.com.duelServer.services.IDuelService;
 
 @RestController
@@ -29,12 +31,11 @@ public class DuelController {
 
 	@PostMapping("/register")
 	@ResponseBody
-	public ResponseEntity<DuelDTO> startDuel(@RequestBody DuelDTO duelDto) {
-		CampeaoAPI champion = championFeign.searchCampeaoById(duelDto.getChampion()).getBody();
-		champion.setId(duelDto.getChampion());
-		CampeaoAPI rival = championFeign.searchCampeaoById(duelDto.getRival()).getBody();
-		rival.setId(duelDto.getRival());
-		return null;
+	public ResponseEntity<DuelDTO> startDuel(@RequestBody DuelDTO duelDto) throws CampeaoException {
+		CampeaoAPI champion = championFeign.retornaCampeao(duelDto.getChampion()).getBody();
+		CampeaoAPI rival = championFeign.retornaCampeao(duelDto.getRival()).getBody();
+		DuelDTO registeredDuel = DuelDTO.convertDuelToDto(duelService.startDuel(champion, rival));
+		return new ResponseEntity<>(registeredDuel, HttpStatus.CREATED);
 	}
 
 }

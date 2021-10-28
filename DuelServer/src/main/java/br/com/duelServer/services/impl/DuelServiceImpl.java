@@ -25,4 +25,14 @@ public class DuelServiceImpl implements IDuelService {
 		return null;
 	}
 
+	private Long calculateAttackDamage(CampeaoAPI champion) {
+		return (champion.getForcaFisica().intValue()
+				+ champion.getHabilidadeComSabre().intValue()
+				+ champion.getMental()) * champion.getAfinadadeForca();
+	}
+
+	private Long calculateDefense(CampeaoAPI champion) {
+		return (champion.getForcaFisica() + champion.getPrevisao()) * champion.getAfinadadeForca();
+	}
+
 }

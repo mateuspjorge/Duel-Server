@@ -2,6 +2,7 @@ package br.com.duelServer.dtos;
 
 import java.io.Serializable;
 
+import br.com.duelServer.entitys.Duel;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,10 +14,18 @@ public class DuelDTO implements Serializable {
 
 	private Long id;
 
-	private Long champion;
+	private String champion;
 
-	private Long rival;
+	private String rival;
 
-	private Long winner;
+	private String winner;
+
+	public static DuelDTO convertDuelToDto(Duel duel) {
+		return DuelDTO.builder()
+					  .champion(duel.getChampion())
+					  .rival(duel.getRival())
+					  .winner(duel.getWinner())
+					  .build();
+	}
 
 }

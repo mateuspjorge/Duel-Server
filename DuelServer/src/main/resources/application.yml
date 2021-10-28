@@ -1,6 +1,24 @@
 server:
-  port: 8084
+  port: 8081
 
 spring:
   application:
     name: duel-server
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: 'jdbc:h2:file:./src/main/resources/db/DB_DUEL'
+    driverClassName: org.h2.Driver
+    username: duel
+    password: duel
+    initialize: true
+  jpa:
+    database-platform: 'org.hibernate.dialect.H2Dialect'
+    hibernate: 
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    

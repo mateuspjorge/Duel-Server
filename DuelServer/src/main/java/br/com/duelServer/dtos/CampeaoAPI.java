@@ -14,7 +14,6 @@ public class CampeaoAPI {
 
 	private TipoCampeaoAPI tipoCapeao;
 
-	private Long id;
 	private Long hp;
 	private Long forcaFisica;
 	private Long mental;

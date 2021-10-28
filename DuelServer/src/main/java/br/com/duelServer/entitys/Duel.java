@@ -37,13 +37,13 @@ public class Duel implements Serializable {
 	@Column(name = "ID_STATE", nullable = false)
 	private Long id;
 
-	@Column(name = "ID_CHAMPION", nullable = false)
-	private Long champion;
+	@Column(name = "DS_CHAMPION", nullable = false, unique = true)
+	private String champion;
 
-	@Column(name = "ID_RIVAL", nullable = false)
-	private Long rival;
+	@Column(name = "DS_RIVAL", nullable = false, unique = true)
+	private String rival;
 
-	@Column(name = "ID_WINNER", nullable = true)
-	private Long winner;
+	@Column(name = "DS_WINNER", nullable = false, unique = true)
+	private String winner;
 
 }
