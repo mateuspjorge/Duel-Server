@@ -12,11 +12,13 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
+@AllArgsConstructor
 @Entity
 @Table(name = "TB_DUEL")
 @GenericGenerator(
@@ -37,13 +39,13 @@ public class Duel implements Serializable {
 	@Column(name = "ID_STATE", nullable = false)
 	private Long id;
 
-	@Column(name = "DS_CHAMPION", nullable = false, unique = true)
+	@Column(name = "DS_CHAMPION", nullable = false)
 	private String champion;
 
-	@Column(name = "DS_RIVAL", nullable = false, unique = true)
+	@Column(name = "DS_RIVAL", nullable = false)
 	private String rival;
 
-	@Column(name = "DS_WINNER", nullable = false, unique = true)
+	@Column(name = "DS_WINNER", nullable = true)
 	private String winner;
 
 }

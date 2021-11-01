@@ -14,6 +14,7 @@ import br.com.duelServer.controllers.DuelController;
 import br.com.duelServer.dtos.CampeaoAPI;
 import br.com.duelServer.dtos.DuelDTO;
 import br.com.duelServer.exceptions.CampeaoException;
+import br.com.duelServer.exceptions.DuelException;
 import br.com.duelServer.services.IDuelService;
 
 @RestController
@@ -33,7 +34,7 @@ public class DuelControllerImpl implements DuelController {
 	@PostMapping("/register")
 	@ResponseBody
 	@Override
-	public ResponseEntity<DuelDTO> startDuel(@RequestBody DuelDTO duelDto) throws CampeaoException {
+	public ResponseEntity<DuelDTO> startDuel(@RequestBody DuelDTO duelDto) throws CampeaoException, DuelException {
 		CampeaoAPI champion = championFeign.retornaCampeao(duelDto.getChampion()).getBody();
 		CampeaoAPI rival = championFeign.retornaCampeao(duelDto.getRival()).getBody();
 		DuelDTO registeredDuel = DuelDTO.convertDuelToDto(duelService.startDuel(champion, rival));
