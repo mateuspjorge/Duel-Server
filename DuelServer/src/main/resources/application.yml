@@ -8,7 +8,7 @@ spring:
     console:
       enabled: true
   datasource:
-    url: 'jdbc:h2:file:./src/main/resources/db/DB_DUEL'
+    url: 'jdbc:h2:~/DB_DUEL'
     driverClassName: org.h2.Driver
     username: duel
     password: duel

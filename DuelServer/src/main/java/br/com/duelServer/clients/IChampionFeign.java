@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import br.com.duelServer.dtos.CampeaoAPI;
 import br.com.duelServer.exceptions.CampeaoException;
 
-@FeignClient(value = "http://server/capeao")
+@FeignClient(value = "http://champion-serve/capeao")
 public interface IChampionFeign {
 
 	@GetMapping(value = "/encotrar/{email}")
